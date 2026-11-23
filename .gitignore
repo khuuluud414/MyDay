@@ -1,0 +1,7 @@
+target/
+*.db
+*.log
+.vscode/
+.idea/
+*.class
+HELP.md
