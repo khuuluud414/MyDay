@@ -19,3 +19,21 @@ Puis ouvrir http://localhost:8081
 
 ## Tests
 mvn test
+## Conteneurisation Docker
+
+### Prérequis
+Java 17, Maven, Docker
+
+### Commandes
+```bash
+mvn clean package
+docker build -t myday:1.0 .
+docker run -d -p 8081:8081 --name myday myday:1.0
+```
+Accès : http://localhost:8081
+
+Pour arrêter : `docker stop myday`
+
+### Choix de sécurité
+- Image officielle `eclipse-temurin:17-jre-alpine`
+- Exécution avec un utilisateur non-root
