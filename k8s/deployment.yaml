@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: myday
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: myday
+  template:
+    metadata:
+      labels:
+        app: myday
+    spec:
+      containers:
+      - name: myday
+        image: khuuluud414/myday:1
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: 8081
+        resources:
+          requests: { cpu: "100m", memory: "256Mi" }
+          limits: { cpu: "500m", memory: "512Mi" }
+        readinessProbe:
+          httpGet: { path: /, port: 8081 }
+          initialDelaySeconds: 20
+        livenessProbe:
+          httpGet: { path: /, port: 8081 }
+          initialDelaySeconds: 40
