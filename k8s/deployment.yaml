@@ -13,17 +13,27 @@ spec:
         app: myday
     spec:
       containers:
-      - name: myday
-        image: khuuluud414/myday:1
-        imagePullPolicy: IfNotPresent
-        ports:
-        - containerPort: 8081
-        resources:
-          requests: { cpu: "100m", memory: "256Mi" }
-          limits: { cpu: "500m", memory: "512Mi" }
-        readinessProbe:
-          httpGet: { path: /, port: 8081 }
-          initialDelaySeconds: 20
-        livenessProbe:
-          httpGet: { path: /, port: 8081 }
-          initialDelaySeconds: 40
+        - name: myday
+          image: myday:1.0
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 8081
+          resources:
+            requests:
+              cpu: "100m"
+              memory: "256Mi"
+            limits:
+              cpu: "500m"
+              memory: "512Mi"
+          readinessProbe:
+            httpGet:
+              path: /
+              port: 8081
+            initialDelaySeconds: 20
+            periodSeconds: 10
+          livenessProbe:
+            httpGet:
+              path: /
+              port: 8081
+            initialDelaySeconds: 40
+            periodSeconds: 15

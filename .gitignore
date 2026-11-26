@@ -4,4 +4,5 @@ target/
 .vscode/
 .idea/
 *.class
-HELP.md
+HELP.md*.tar
+*.tar
