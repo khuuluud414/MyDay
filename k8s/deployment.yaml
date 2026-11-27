@@ -37,3 +37,4 @@ spec:
               port: 8081
             initialDelaySeconds: 40
             periodSeconds: 15
+            image: dockerkhuuluud/myday:1.0
